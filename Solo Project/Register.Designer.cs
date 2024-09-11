@@ -38,6 +38,7 @@
             this.PasswordTxt = new System.Windows.Forms.TextBox();
             this.ConfirmTxt = new System.Windows.Forms.TextBox();
             this.RegisterButton = new System.Windows.Forms.Button();
+            this.AdminRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -132,14 +133,28 @@
             this.RegisterButton.BackColor = System.Drawing.Color.Gold;
             this.RegisterButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RegisterButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterButton.ForeColor = System.Drawing.Color.Crimson;
-            this.RegisterButton.Location = new System.Drawing.Point(174, 275);
+            this.RegisterButton.ForeColor = System.Drawing.Color.Red;
+            this.RegisterButton.Location = new System.Drawing.Point(208, 275);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(180, 33);
+            this.RegisterButton.Size = new System.Drawing.Size(146, 33);
             this.RegisterButton.TabIndex = 9;
-            this.RegisterButton.Text = "Register";
+            this.RegisterButton.Text = "Register as User";
             this.RegisterButton.UseVisualStyleBackColor = false;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
+            // 
+            // AdminRegister
+            // 
+            this.AdminRegister.BackColor = System.Drawing.Color.Gold;
+            this.AdminRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AdminRegister.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdminRegister.ForeColor = System.Drawing.Color.Red;
+            this.AdminRegister.Location = new System.Drawing.Point(12, 275);
+            this.AdminRegister.Name = "AdminRegister";
+            this.AdminRegister.Size = new System.Drawing.Size(156, 33);
+            this.AdminRegister.TabIndex = 10;
+            this.AdminRegister.Text = "Register as Admin";
+            this.AdminRegister.UseVisualStyleBackColor = false;
+            this.AdminRegister.Click += new System.EventHandler(this.AdminRegister_Click);
             // 
             // Register
             // 
@@ -147,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Maroon;
             this.ClientSize = new System.Drawing.Size(393, 339);
+            this.Controls.Add(this.AdminRegister);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.ConfirmTxt);
             this.Controls.Add(this.PasswordTxt);
@@ -159,6 +175,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Register";
             this.Text = "Register";
+            this.Load += new System.EventHandler(this.Register_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +193,6 @@
         private System.Windows.Forms.TextBox PasswordTxt;
         private System.Windows.Forms.TextBox ConfirmTxt;
         private System.Windows.Forms.Button RegisterButton;
+        private System.Windows.Forms.Button AdminRegister;
     }
 }

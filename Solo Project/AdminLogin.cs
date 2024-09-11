@@ -2,36 +2,44 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Security.Cryptography;
+
 
 namespace Solo_Project
 {
-    public partial class Form1 : Form
+    public partial class AdminLogin : Form
     {
-        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\SOLO\\Solo Project\\UserDatabase.mdf\";Integrated Security=True";
+        string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"G:\\SOLO(Final)\\SOLO\\Solo Project\\UserDatabase.mdf\";Integrated Security=True";
         private SqlConnection conn;
-
-        public Form1()
+        public AdminLogin()
         {
             InitializeComponent();
-            conn = new SqlConnection(connectionString);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            conn = new SqlConnection();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Register reg = new Register();
-            reg.Show();
+            this.Hide();
+            Form1 login = new Form1();
+            login.Show();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                PasswordTxt.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                PasswordTxt.UseSystemPasswordChar = true;
+            }
         }
 
         private void Login_Click(object sender, EventArgs e)
@@ -42,7 +50,7 @@ namespace Solo_Project
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT Password FROM registration WHERE Email = @Email";
+                string query = "SELECT Password FROM AdminRegistration WHERE Email = @Email";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -51,7 +59,7 @@ namespace Solo_Project
 
                     if (storedPassword != null && VerifyPassword(password, storedPassword))
                     {
-                        Dashboard dash = new Dashboard();
+                        AdminDashboard dash = new AdminDashboard();
                         MessageBox.Show("Login Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
                         dash.ShowDialog();
@@ -84,26 +92,9 @@ namespace Solo_Project
             return hashedInputPassword == storedPassword;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void AdminLogin_Load(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                PasswordTxt.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                PasswordTxt.UseSystemPasswordChar = true;
-            }
-        }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            AdminLogin login = new AdminLogin();
-            login.Show();
         }
     }
 }
-
-
-
